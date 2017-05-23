@@ -151,4 +151,16 @@ end
     @test String(take!(io)) == "foobar\nbaz"
 end
 
+@testset ExtendedTestSet "show" begin
+    io = IOBuffer()
+    show(io, IOIndent(IOBuffer()))
+    @test String(take!(io)) == """
+    IOIndent:
+        IO: IOBuffer(data=UInt8[...], readable=true, writable=true, seekable=true, append=false, size=0, maxsize=Inf, ptr=1, mark=-1)
+        Indent string: "    "
+        Align char: " "
+        Indent: 0
+        Aligns: """
+end
+
 end
