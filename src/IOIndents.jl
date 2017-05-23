@@ -13,6 +13,8 @@ struct Dedent end
 struct Align end
 struct Dealign end
 
+Base.show(io::IO, ::Union{Indent, Dedent, Align, Dealign}) = nothing
+
 mutable struct IOIndent{IO_t <: IO} <: Base.AbstractPipe
     io::IO_t
     indent_level::Int

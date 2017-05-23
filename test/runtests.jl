@@ -145,4 +145,10 @@ end
     @test haskey(io, :foobar) == false
 end
 
+@testset ExtendedTestSet "nop normal IO" begin
+    io = IOBuffer()
+    print(io, "foo", Indent(), Dedent(), "bar\n", Indent(), "baz")
+    @test String(take!(io)) == "foobar\nbaz"
+end
+
 end

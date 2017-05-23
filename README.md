@@ -116,6 +116,17 @@ zzzzzzb
 zzzzzzc
 ```
 
+## Misc
+
+Printed `Indent()`, `Aling()` etc. to `IO` objects that are not of type `IOIdent`
+are ignored:
+
+```jl
+julia> print(STDOUT, "foo", Indent(), "bar", Align(), "\nbaz")
+foobar
+baz
+```
+
 ## Author
 
 Kristoffer Carlsson - [@KristofferC](https://github.com/KristofferC)
