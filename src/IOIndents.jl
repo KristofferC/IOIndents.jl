@@ -75,6 +75,7 @@ print(io::IOIndent, ::Dealign) = write(io, Dealign())
 write_indent(io::IOIndent) = write(io.io, io.indent_str^io.indent_level)
 write_offset(io::IOIndent) = write(io.io, string(io.align_char)^_align_length(io))
 
+write(io::IOIndent, chr::Char) = write(io, string(chr)) # Need to catch writing a '\n'
 function write(io::IOIndent, str::String)
     written = 0
     for (i, line) in enumerate(split(str, "\n"))
