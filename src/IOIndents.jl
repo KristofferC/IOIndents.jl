@@ -36,7 +36,6 @@ alignment_char!(io::IOIndent, chr::Char) = (io.align_char = chr; io)
 IOIndent(io::IO) = IOIndent{typeof(io)}(io, 0, Int[], 0, false, "    ", ' ')
 
 convert(::Type{IOIndent}, io::IOIndent) = io
-convert(::Type{IOIndent}, io::IO) = IOIndent(io, ImmutableDict{Symbol, Any}())
 
 in(key_value::Pair, io::IOIndent) = in(key_value, io.io, ===)
 haskey(io::IOIndent, key) = haskey(io.io, key)
