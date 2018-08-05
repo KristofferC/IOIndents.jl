@@ -5,6 +5,8 @@ module IOIndents
 import Base: convert, show, pipe_reader, pipe_writer, lock, unlock, write,
              getindex, in, haskey, get, print
 
+import Compat: textwidth
+
 export IOIndent, Indent, Dedent, Align, Dealign, indent_string!, alignment_char!
 
 struct Indent end
