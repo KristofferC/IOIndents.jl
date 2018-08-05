@@ -23,6 +23,7 @@ iobuffer = IOBuffer()
 io = IOIndent(iobuffer)
 ```
 
+**Note:** There are still some kinks that have not been entirely straightened out, leading to odd indentation in some cases.
 
 ## Examples
 
