@@ -5,6 +5,8 @@ module IOIndents
 import Base: convert, show, pipe_reader, pipe_writer, lock, unlock, write,
              getindex, in, haskey, get, print
 
+import Compat: textwidth
+
 export IOIndent, Indent, Dedent, Align, Dealign, indent_string!, alignment_char!
 
 struct Indent end
@@ -27,7 +29,7 @@ mutable struct IOIndent{IO_t <: IO} <: Base.AbstractPipe
     function IOIndent{IO_t}(io::IO_t, indent_level::Int, aligns::Vector{Int},
                             offset::Int, indented_line::Bool, indent_str::String,
                             align_char::Char) where IO_t <: IO
-        assert(!(IO_t <: IOIndent))
+        @assert !(IO_t <: IOIndent)
         return new(io, indent_level, aligns, offset, indented_line, indent_str, align_char)
     end
 end
@@ -90,7 +92,7 @@ function write(io::IOIndent, str::String)
             io.indented_line = true
         end
         written += write(io.io, line)
-        io.offset += strwidth(line)
+        io.offset += textwidth(line)
     end
     return written
 end
